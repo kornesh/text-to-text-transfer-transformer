@@ -125,6 +125,8 @@ class MtfModel(T5Model):
       ensemble_inputs: an integer, see `train_model` docstring for details.
       iterations_per_loop: integer, steps per train loop
     """
+    
+    print("#"*50, "forked t5", "#"*50)
 
     mesh_shape = utils.tpu_mesh_shape(tpu_topology, model_parallelism)
 
@@ -155,10 +157,10 @@ class MtfModel(T5Model):
     self._ensemble_inputs = ensemble_inputs
     self._iterations_per_loop = iterations_per_loop
 
-    self._cluster = tf.distribute.cluster_resolver.TPUClusterResolver(
-        tpu if (tpu) else "", zone=tpu_zone, project=gcp_project)
-    self._tpu = tpu
-    self._tpu_job_name = tpu_job_name
+    self._cluster = tf.distribute.cluster_resolver.TPUClusterResolver()
+    print("Done initializing TPU")
+    self._tpu = true
+    self._tpu_job_name = 'worker'
     self._estimator = None
 
     # Must be called after _sequence_length, _mesh_shape, and _layout_rules are
