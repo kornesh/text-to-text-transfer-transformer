@@ -159,7 +159,7 @@ class MtfModel(T5Model):
 
     self._cluster = tf.distribute.cluster_resolver.TPUClusterResolver()
     print("Done initializing TPU")
-    self._tpu = true
+    self._tpu = True
     self._tpu_job_name = 'worker'
     self._estimator = None
 
